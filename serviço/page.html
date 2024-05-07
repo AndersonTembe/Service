@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Criar e Visualizar Serviços</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="ft.png">
+        <form id="mainForm" novalidate>
+            <h2>Criar um Serviço</h2>
+            <div class="form-control">
+                <label for="name">Nome</label>
+                <input type="text" id="name" placeholder="Enter your name" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+
+            <div class="form-control">
+                <label for="Salario">Salario</label>
+                <input type="number" id="Salario" placeholder="insira o Salario" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+
+            <div class="form-control">
+                <label for="Localizacao">Localizaçao</label>
+                <input type="text" id="Localizacao" placeholder="insira a  Localizaçao" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+
+            <div class="form-control">
+                <label for="DataHora">Data e hora</label>
+                <input type="text" id="DataHora" placeholder="insira a Data e hora (YYYY-MM-DD HH:MM)" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+
+            <div class="form-control">
+                <label for="vagas">Vagas</label>
+                <input type="number" id="vagas" placeholder="insira o numero de vagas" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+
+            <div class="form-control">
+                <label for="TipoServico">Tipo de serviço</label>
+                <input type="text" id="TipoServico" placeholder="insira o tipo de serviço" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+
+            <button type="submit">Criar</button>
+
+        </form>
+
+        <h2>Serviços Criados</h2>
+        <table class="service-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Salário</th>
+                    <th>Localização</th>
+                    <th>Data e Hora</th>
+                    <th>Vagas</th>
+                    <th>Tipo de Serviço</th>
+                </tr>
+            </thead>
+            <tbody id="serviceTableBody">
+                <!-- Aqui serão inseridos os serviços criados -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeSuccessModal()">&times;</span>
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>Success!</h2>
+            <p>Your form has been submitted successfully.</p>
+        </div>
+    </div>
+
+    <script>
+        // Função para abrir o modal de sucesso
+        function openSuccessModal() {
+            document.getElementById("successModal").style.display = "block";
+        }
+
+        // Função para fechar o modal de sucesso
+        function closeSuccessModal() {
+            document.getElementById("successModal").style.display = "none";
+        }
+
+        // Adiciona um evento de envio ao formulário
+        document.getElementById("mainForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Evita o envio do formulário padrão
+
+            // Adiciona o serviço à tabela de serviços
+            addServiceToTable();
+            openSuccessModal();
+        });
+
+        // Função para adicionar um serviço à tabela de serviços
+        function addServiceToTable() {
+            var name = document.getElementById("name").value;
+            var salario = document.getElementById("Salario").value;
+            var localizacao = document.getElementById("Localizacao").value;
+            var dataHora = document.getElementById("DataHora").value;
+            var vagas = document.getElementById("vagas").value;
+            var tipoServico = document.getElementById("TipoServico").value;
+
+            var tableBody = document.getElementById("serviceTableBody");
+            var newRow = tableBody.insertRow();
+            newRow.innerHTML = "<td>" + name + "</td>" +
+                "<td>" + salario + "</td>" +
+                "<td>" + localizacao + "</td>" +
+                "<td>" + dataHora + "</td>" +
+                "<td>" + vagas + "</td>" +
+                "<td>" + tipoServico + "</td>";
+        }
+    </script>
+</body>
+
+</html>
